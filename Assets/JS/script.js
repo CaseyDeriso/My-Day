@@ -1,9 +1,8 @@
 test = false;
 
-let currentHour = 4;
-// moment()
-//   .format("LT") // 7:44 PM
-//   .substring(1, 0); // "7"
+let currentHour = moment()
+  .format("LT") // 7:44 PM
+  .substring(1, 0); // "7"
 
 $(window).on("mousemove", function () {
   let timeSlotEl = $("tbody").children();
