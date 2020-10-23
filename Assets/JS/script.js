@@ -36,7 +36,7 @@ const updateDescriptions = function () {
     descriptionId = $(slotDescription).attr("id");
     // set conditional statement to see if there is a description stored on local storage
     if (localStorage.getItem(descriptionId) === null) {
-      $(slotDescription).html(localStorage.getItem("default"));
+
     } else {
       $(slotDescription).html(localStorage.getItem(descriptionId));
     }
@@ -53,12 +53,12 @@ $("td[id]").on("click", function (event) {
   textInput.trigger("focus");
 });
 // td is clicked off without saving
-$("td[id]").on("blur", "textarea", function (event) {
-  event.preventDefault();
-  console.log("this happened");
-  // pull data from the local storage to revert task back
-  updateDescriptions();
-});
+// $("td[id]").on("blur", "textarea", function (event) {
+//   event.preventDefault();
+//   console.log("this happened");
+//   // pull data from the local storage to revert task back
+//   updateDescriptions();
+// });
 // user clicked save button, save the edit and replace with new text
 // update local storage with item description
 $(".btn").on("click", function (event) {
