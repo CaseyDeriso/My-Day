@@ -1,4 +1,5 @@
 let currentHour = moment().hour();
+localStorage.setItem("default", "Type your task here");
 
 const changeClasses = function () {
   let timeSlotEl = $("tbody").children();
@@ -32,14 +33,12 @@ const updateDescriptions = function () {
     // select the descrption td element
     slotDescription = slotChildren[1];
     // get the id of the description
-    descriptionId = $(slotDescription).attr('id')
+    descriptionId = $(slotDescription).attr("id");
     // set conditional statement to see if there is a description stored on local storage
-    if (localStorage.getItem(descriptionId) === null){
-  
-    }
-    else {
-        $(slotDescription).html(localStorage.getItem(descriptionId))
-
+    if (localStorage.getItem(descriptionId) === null) {
+      $(slotDescription).html(localStorage.getItem("default"));
+    } else {
+      $(slotDescription).html(localStorage.getItem(descriptionId));
     }
   }
 };
@@ -56,7 +55,7 @@ $("td[id]").on("click", function (event) {
 // td is clicked off without saving
 $("td[id]").on("blur", "textarea", function (event) {
   event.preventDefault();
-    console.log("this happened")
+  console.log("this happened");
   // pull data from the local storage to revert task back
   updateDescriptions();
 });
