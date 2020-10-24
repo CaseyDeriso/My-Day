@@ -10,4 +10,4 @@
 
 ### Here is a screenshot of the application:
 
-![screenshot of deployed application](./assets/pictures/screenshot.jpg)
+![screenshot of deployed application](./Assets/pictures/screenshot.jpg)
