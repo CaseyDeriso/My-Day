@@ -1,4 +1,8 @@
 let currentHour = moment().hour();
+localStorage.setItem("placeHolder", "Type your task here")
+
+// display date at top of table element. 
+$("#date").text(moment().format('MMMM Do YYYY'));
 
 const changeClasses = function () {
   let timeSlotEl = $("tbody").children();
@@ -34,8 +38,11 @@ const updateDescriptions = function () {
     // get the id of the description
     descriptionId = $(slotDescription).attr("id");
     // set conditional statement to see if there is a description stored on local storage
-    if (localStorage.getItem(descriptionId) === null) {
+    if (localStorage.getItem(descriptionId) == "undefined" || localStorage.getItem(descriptionId) == undefined) {
+        $(slotDescription).empty();
+        $(slotDescription).html(localStorage.getItem("placeHolder"));
     } else {
+      $(slotDescription).empty();
       $(slotDescription).html(localStorage.getItem(descriptionId));
     }
   }
@@ -50,13 +57,6 @@ $("td[id]").on("click", function (event) {
   $(this).html(textInput);
   textInput.trigger("focus");
 });
-// td is clicked off without saving
-$("td[id]").on("blur", "textarea", function (event) {
-  event.preventDefault();
-  console.log("this happened");
-  // pull data from the local storage to revert task back
-  updateDescriptions();
-});
 // user clicked save button, save the edit and replace with new text
 // update local storage with item description
 $(".btn").on("click", function (event) {
@@ -69,8 +69,8 @@ $(".btn").on("click", function (event) {
   let text = tdEl.children().val();
   // save id and description to local storage
   localStorage.setItem(tdId, text);
-    // update the table
-    updateDescriptions();
+  // update the table
+  updateDescriptions();
 });
 
 updateDescriptions();
